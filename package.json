@@ -1,0 +1,17 @@
+{
+  "name": "testjs",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "opentimestamps": "^0.4.9",
+    "pg": "^8.7.3",
+    "sha256": "^0.2.0",
+    "sha256-file": "^1.0.0"
+  }
+}
