@@ -2,6 +2,7 @@ const sha256 = require('sha256');
 const { Client } = require('pg');
 const fs = require("fs");
 
+// Defining database configs
 const client = new Client({
     host: "localhost",
     user: "postgres",
@@ -9,9 +10,11 @@ const client = new Client({
     password: "postgres",
     database: "reports"
 })
+// Establishing connection with local database
 client.connect();
 
-client.query("Select * from public.dim_queuemsgs WHERE timestamp IS NULL order by messagedate desc limit 500;")
+// Selecting the reports 
+client.query("Select * from public.dim_queuemsgs WHERE json_hash IS NULL order by messagedate desc limit 500;")
     .then(async (res) => {
         for (let i = 0; i < res.rows.length; i++) {
             let hash = sha256(JSON.stringify(res.rows[i].message) + JSON.stringify(res.rows[i].messagedata + JSON.stringify(res.rows[i].queuemsgsid)));
